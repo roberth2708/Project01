@@ -6,7 +6,7 @@ using namespace std;
 
 const int LENGHT = 20;
 
-int randomNumber()
+int generateRandomNumbers()
 {
 	int randNum1, randNum2;
 
@@ -23,7 +23,23 @@ void showList(int array[], int arrLength)
 	}
 }
 
+void sortList(int array[], int arrLength)
+{
+	bool isSorted = false;
 
+	while (!isSorted) {
+		isSorted = true;
+		for (int i = 0; i < arrLength - 1; i++) {
+			if (array[i] > array[i + 1]) {
+				int temp = array[i + 1];
+				array[i + 1] = array[i];
+				array[i] = temp;
+				isSorted = false;
+			}
+		}
+	}
+
+}
 
 
 int main()
@@ -31,16 +47,18 @@ int main()
 	int list[LENGHT];
 	//int randomNum1, randomNum2;
 	double product = 1.0;
-	
+
+
 	srand(time(0));
 	for (int index = 0; index < LENGHT; index++) {
-		list[index] = randomNumber();
-		cout << product << " ";
+		list[index] = generateRandomNumbers();
+		//cout << product << " ";
 		product *= list[index];
 	}
 
-	cout << endl;
+	cout << "\nRandom list of numbers: " << endl;
 	showList(list, LENGHT);
+	cout << endl;
 
 /*	
 	srand(time(0));
@@ -60,6 +78,8 @@ int main()
 	cout << endl;
 */
 
+
+	/*
 	bool isSorted = false;
 	while (!isSorted) {
 		isSorted = true;
@@ -72,25 +92,22 @@ int main()
 			}
 		}
 	}
+	*/
 
 
 
+	/// Call 
+	sortList(list, LENGHT);
 
-
-
-
-
-
-
-
-	for (int element : list)
-		cout << element << " ";
+	cout << "\n\tSorted list in ascending order: ";
+	cout << "\n\t";
+	showList(list, LENGHT);
 	cout << endl;
 
-	cout << "Product: " << product
-		<< "\nMaximun: " << list[LENGHT - 1]
-		<< "\nMinimun: " << list[0]
-		<< endl;
+	cout << "\n\tProduct of the numbers in the list: " << product
+		 << "\n\tMinimun value in the list: " << list[0]
+		 << "\n\tMaximun value in the list: " << list[LENGHT - 1]
+		 << endl;
 
 
 
